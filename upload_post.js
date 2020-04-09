@@ -37,7 +37,7 @@ handleChoosePhoto = () => {
   }
 
   ImagePicker.launchImageLibrary(options, response => {
-    console.log('Response => ', response);
+    // console.log('Response => ', response);
   
         if (response.didCancel) {
           console.warn('User cancelled photo picker');
@@ -71,43 +71,50 @@ handleChoosePhoto = () => {
 onUpload=()=>{
     if(this.state.postName.length === 0 || this.state.category.length === 0 || this.state.msgImage.length === 0)
     {
-      this.setState({msg: "please fill all the fields"})
+      this.setState({msg: "please fill all input fields"})
     }
     else
     {
-      console.log("comming before axios");
+      // console.log("comming before axios");
+
+      // console.log("image +++++++",this.state.image);
 
       const data = new FormData();
 
       // formData.append("postName",this.state.postName);
       // formData.append("category",this.state.category);
       // formData.append("image",this.state.image.uri);
-
+// file  wala dikhao
+// backend????call
       data.append('name', 'avatar');
       data.append('fileData', {
       uri : this.state.image.uri,
       type: this.state.image.type,
       name: this.state.image.fileName
       });
-      
-      const config = {
-        method: 'POST',
-        headers: {
-         'Accept': 'application/json',
-         'Content-Type': 'multipart/form-data',
-        },
-        body: data,
-       };
+      // kya hua sir
+      //ye rha sir
+      // const config = {
+      //   method: 'POST',
+      //   headers: {
+      //    'Accept': 'application/json',
+      //    'Content-Type': 'multipart/form-data',
+      //   },
+      //   body: data,
+      //  };
 
-       Axios.post("http://192.168.43.246:8000/uploadPost",config).then((response)=>{
-         
-       })
+       Axios.post("http://192.168.43.246:8000/uploadPost",data)
+       .then(()=>{       
+         console.log("checkStatusAndGetJSONResponse");
+         }).catch((err)=>{console.log(err)});
 
-      //  fetch("http://192.168.43.246:8000/" + "uploadPost", config)
+      // console.log("data in form is```````",data);
+
+      //  fetch("http://localhost:8000/uploadPost", config)
       //  .then((checkStatusAndGetJSONResponse)=>{       
       //  console.log(checkStatusAndGetJSONResponse);
       //  }).catch((err)=>{console.log(err)});
-    }
+    
       
 
       // console.log("data in the form is~~~~~~~~~~",formData)
@@ -122,7 +129,8 @@ onUpload=()=>{
 
       //   console.log("response is comming from server",response.data.message);
       // })
-      
+      // aa gya ?
+      // nhi sir
 
 
 
@@ -168,10 +176,11 @@ onUpload=()=>{
       //   body: data
       // })
 
-      this.setState({msg: "post uploaded successfully"})
+      // this.setState({msg: "post uploaded successfully"})
 
-      console.log("the state isssssss+++++++++++++++",this.state);
+      // console.log("the state isssssss+++++++++++++++",this.state);
     }
+}  
 
    
   render(){

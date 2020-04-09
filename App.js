@@ -86,6 +86,11 @@ import SignUp from './signup';
 import FormTest from './validationForm.js';
 import Timeline from "./timeline"
 import UploadPost from './upload_post.js';
+import AddCategory from './add_category';
+import ShowCategory from './show_categories';
+import SinglePost from "./single_post.js"
+
+// import UploadPost from './UPLOAD.js'
 
 export default class App extends React.Component{
   constructor(props){
@@ -93,7 +98,7 @@ export default class App extends React.Component{
 
     this.state = {
       // login: false,
-      forRenderComp: 2
+      forRenderComp: 5
     }
 
   }
@@ -113,6 +118,14 @@ export default class App extends React.Component{
     {this.state.forRenderComp === 3 && <Timeline handleChange = {this.handleChange}/>}
     
     {this.state.forRenderComp === 4 && <UploadPost handleChange = {this.handleChange}/>}
+
+    {this.state.forRenderComp === 5 && <AddCategory handleChange = {this.handleChange}/>}
+
+    {this.state.forRenderComp === 6 && <ShowCategory handleChange = {this.handleChange}/>}
+
+    {this.state.forRenderComp === 7 && <SinglePost handleChange = {this.handleChange}/>}
+
+    {/* {this.state.forRenderComp === 8 && <UploadPost handleChange = {this.handleChange}/>} */}
     
     {/* <FormTest/> */}
     </View>
